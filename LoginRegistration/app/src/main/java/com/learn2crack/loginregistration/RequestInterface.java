@@ -9,7 +9,7 @@ import retrofit2.http.POST;
 
 public interface RequestInterface {
 
-    @POST("login_register/")
+    @POST("learn2crack-login-register/")
     Call<ServerResponse> operation(@Body ServerRequest request);
 
 }
