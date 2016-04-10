@@ -28,7 +28,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
 
     private AppCompatButton btn_login;
     private EditText et_email,et_password;
-    private TextView tv_register;
+    private TextView tv_register,tv_reset_password;
     private ProgressBar progress;
     private SharedPreferences pref;
 
@@ -47,6 +47,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
 
         btn_login = (AppCompatButton)view.findViewById(R.id.btn_login);
         tv_register = (TextView)view.findViewById(R.id.tv_register);
+        tv_reset_password = (TextView)view.findViewById(R.id.tv_reset_password);
         et_email = (EditText)view.findViewById(R.id.et_email);
         et_password = (EditText)view.findViewById(R.id.et_password);
 
@@ -54,6 +55,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
 
         btn_login.setOnClickListener(this);
         tv_register.setOnClickListener(this);
+        tv_reset_password.setOnClickListener(this);
     }
 
     @Override
@@ -79,7 +81,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
                     Snackbar.make(getView(), "Fields are empty !", Snackbar.LENGTH_LONG).show();
                 }
                 break;
-
+            case R.id.tv_reset_password:
+                goToResetPassword();
+                break;
         }
     }
     private void loginProcess(String email,String password){
@@ -128,6 +132,14 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
 
             }
         });
+    }
+
+    private void goToResetPassword(){
+
+        Fragment reset = new ResetPasswordFragment();
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(R.id.fragment_frame,reset);
+        ft.commit();
     }
 
     private void goToRegister(){
